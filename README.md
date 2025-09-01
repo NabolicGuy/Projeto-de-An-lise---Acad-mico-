@@ -64,5 +64,3 @@ Projeto fictício de uma **loja de eletrônicos** (New Generation) com foco em e
 
 ## 📬 Contato
 Projeto acadêmico/demonstrativo — *New Generation* (varejo de eletrônicos).
-## 📬 Contato
-Projeto acadêmico/demonstrativo – *New Generation* (varejo de eletrônicos).  

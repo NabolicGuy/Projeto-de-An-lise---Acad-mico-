@@ -16,7 +16,7 @@ Projeto fictício de uma **loja de eletrônicos** (New Generation) com foco em e
 ---
 ## 🧩 Modelagem Dimensional (antes do Power BI)
 
-![Star Schema – Fluxo de Caixa](docs/star_schema_fluxocaixa.png)
+![Star Schema – Fluxo de Caixa]([docs/star_schema_fluxocaixa.png](https://github.com/NabolicGuy/Projeto-de-Analise-de-Dados/blob/main/modelo_relacional.png))
 
 **Arquitetura:** modelo em estrela para leitura executiva e performance.
 - **Fato – `fato_fluxocaixa`**

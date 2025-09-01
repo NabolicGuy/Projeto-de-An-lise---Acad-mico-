@@ -1,4 +1,4 @@
- r"""# New Generation — Análise de Vendas & Finanças (Power BI) • Julho
+ # New Generation — Análise de Vendas & Finanças (Power BI) • Julho
 
 **Link do painel (acesso público):**  
 ▶️ https://app.powerbi.com/view?r=eyJrIjoiMTc3NGE0YzktZjE1Zi00ZjllLTg2NGUtMDcwZjNlYWJmZDA5IiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9

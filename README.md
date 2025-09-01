@@ -14,6 +14,25 @@
 Projeto fictício de uma **loja de eletrônicos** (New Generation) com foco em evidenciar, de forma executiva, **receita, lucro, despesas, mix de produtos, perfil de clientes e formas de pagamento**. O recorte de comunicação usa **julho** como mês de referência.
 
 ---
+## 🧩 Modelagem Dimensional (antes do Power BI)
+
+![Star Schema – Fluxo de Caixa](docs/star_schema_fluxocaixa.png)
+
+**Arquitetura:** modelo em estrela para leitura executiva e performance.
+- **Fato – `fato_fluxocaixa`**
+  - Chaves: `tempo_key`, `produto_id`, `cliente_id`, `departamento_id`, `pagamento_id`
+  - Atributos: `tipo_movimentacao`, `categoria`, `quantidade`, `valor_unitario`, `desconto`, `valor_movimentacao`
+  - **Métricas derivadas** no BI: Receita, Despesa, Lucro, Ticket Médio, % por forma de pagamento, Ranking de produtos
+- **Dimensões**
+  - `dim_tempo`: dia, mês, ano, trimestre, dia_semana, fim_de_semana
+  - `dim_cliente`: nome, idade, gênero, cidade, estado, segmento_cliente, ticket_medio_base
+  - `dim_produto`: produto, marca, tipo, preco_unitario
+  - `dim_departamento`: departamento
+  - `dim_forma_pagamento`: forma_pagamento
+- **Grão:** 1 linha = **uma movimentação** (venda/lançamento) por data–produto–cliente–departamento–forma de pagamento.
+- **Por que assim?** Melhor **performance** nas agregações, **reuso** de dimensões, **governança** dos cálculos e **histórico** por tempo.
+
+> A visão foi a base consolidada que alimentou a fato e as dimensões durante a modelagem.
 
 ## 🔎 Como foi feita a análise (sem passo a passo técnico)
 ### 1) Fonte e escopo dos dados

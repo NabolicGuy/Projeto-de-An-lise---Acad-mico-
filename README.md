@@ -1,86 +1,68 @@
-# New Generation – Análise de Vendas e Finanças (Power BI)
+ r"""# New Generation — Análise de Vendas & Finanças (Power BI) • Julho
 
-**Contexto:** projeto fictício de uma **loja de eletrônicos** chamada *New Generation*, focada em transformar dados em decisões simples e rápidas.  
-**Objetivo:** disponibilizar um painel Power BI que sintetiza resultados de **receita, lucro, despesas, mix de produtos, perfil de clientes e formas de pagamento**, com recorte por período (ex.: **julho**).
+**Link do painel (acesso público):**  
+▶️ https://app.powerbi.com/view?r=eyJrIjoiMTc3NGE0YzktZjE1Zi00ZjllLTg2NGUtMDcwZjNlYWJmZDA5IiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9
 
----
-
-## 🔗 Dashboard (Power BI – acesso público)
-▶️ **Abrir o painel:** https://app.powerbi.com/view?r=eyJrIjoiMTc3NGE0YzktZjE1Zi00ZjllLTg2NGUtMDcwZjNlYWJmZDA5IiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9
-
----
-
-## 🧭 Contexto de Negócio
-A *New Generation* opera no varejo de **hardware e periféricos**. O painel foi desenhado para responder, em segundos:
-- **Quanto vendemos e quanto lucramos?**
-- **Quais produtos puxam o resultado?**
-- **Onde gastamos mais?**
-- **Quem compra da gente (perfil) e como paga?**
-- **Como cada mês/forma de pagamento impacta o caixa?**
+## 👥 Integrantes
+- **Paulo Medeiros**
+- **Lucas Guedes Gianini**
+- **Lucas Machado**
 
 ---
 
-## 🎯 O que o dashboard mostra
-- **KPIs de topo:** **Receita Total** e **Lucro Líquido** (ex.: em julho, *R$ 313 mil* de receita e *R$ 261 mil* de lucro).
-- **Top 5 produtos:** barras com os itens que mais faturam (ex.: *XPG Gammix*, *Cooler Master*, *Corsair RM650*, *AMD RX 6600*, *AMD Ryzen 7*).
-- **Receita vs. Despesa:** minigráficos para leitura rápida do equilíbrio operacional.
-- **Despesas por Departamento:** barras detalhando **RH**, **Infraestrutura**, **Logística**, **Financeiro**, **Marketing** e **TI**.
-- **Clientes distintos por gênero:** pizza (equilíbrio entre **M** e **F**, próximo de 51% / 49%).
-- **Transações por forma de pagamento:** rosca com **Cartão de Crédito** (~36%), **PIX** (~24%), **Boleto** (~17%) e demais (**Cartão Débito**, **Dinheiro**, **Em branco**).
-- **Slicer hierárquico de período e pagamento:** permite filtrar por **Ano → Mês → Forma de Pagamento**.
-
-> Observação: os percentuais são aproximados com base no recorte de **julho** exibido no painel.
+## 🧭 Contexto
+Projeto fictício de uma **loja de eletrônicos** (New Generation) com foco em evidenciar, de forma executiva, **receita, lucro, despesas, mix de produtos, perfil de clientes e formas de pagamento**. O recorte de comunicação usa **julho** como mês de referência.
 
 ---
 
-## 💡 Principais insights (exemplo: Julho)
-1. **Eficiência operacional:** lucro elevado frente à receita indica controle de custos e margem saudável.
-2. **Mix vencedor:** o **Top 5** concentra grande parte do faturamento — ótima oportunidade para reforçar **estoque**, **campanhas de bundle** e **vitrines** nesses itens.
-3. **Custo por área:** **RH** e **Infraestrutura** lideram as despesas. Vale revisar **headcount/turnover**, contratos e **SLA** de serviços.
-4. **Perfil do cliente:** distribuição equilibrada por gênero → campanhas segmentadas (criativos e ofertas por público) podem elevar conversão.
-5. **Formas de pagamento:** **Cartão de Crédito** lidera; **PIX** já é o 2º.  
-   - Tática: **descontos/benefícios no PIX** para reduzir taxa financeira e acelerar caixa.
-   - Monitorar **boletos** (inadimplência/abandono).
+## 🔎 Como foi feita a análise (sem passo a passo técnico)
+### 1) Fonte e escopo dos dados
+- Utilizamos um **dataset único consolidado**: `FluxoCaixa_DatasetUnico_ASCII.xlsx`, contendo lançamentos de **vendas** e **despesas** com atributos de **produto**, **departamento**, **forma de pagamento**, **cliente (gênero)** e **data**.
+
+### 2) Qualidade e padronização
+- Ajustamos **tipos de dados** (datas e valores monetários) e **padronizamos textos** (acentos/maiúsculas, remoção de espaços).  
+- Tratamos ausências: por exemplo, **Forma de Pagamento não informada** foi rotulada para evitar o rótulo “(em branco)” nos visuais.  
+- Conferimos **duplicidades** e **outliers** em receita/despesa para manter consistência de leitura executiva.
+
+### 3) Organização analítica
+- Estruturamos a leitura em torno de **uma tabela de fato** (lançamentos) e uma visão de **tempo** para cortes por **ano/mês**.  
+- Derivamos **métricas de negócio**: **Receita**, **Despesa**, **Lucro** e **Clientes distintos**, além de **% por Forma de Pagamento** e **ranking de Produtos** para leitura de concentração.
+
+### 4) Visão executiva (por que esses visuais)
+- **KPIs (cards)** de **Receita** e **Lucro**: leitura imediata do resultado do período.  
+- **Top 5 Produtos (barras)**: identifica a **curva A** do mix e orienta priorização de estoque/campanhas.  
+- **Despesas por Departamento (barras/colunas)**: evidencia onde o caixa é consumido (**RH**, **Infraestrutura**, etc.).  
+- **Formas de Pagamento (rosca)**: mostra o impacto financeiro de **Cartão**, **PIX**, **Boleto** e outros.  
+- **Perfil de Clientes (pizza)**: leitura rápida do equilíbrio por **gênero**.  
+- **Filtro hierárquico** por **Ano → Mês → Forma de Pagamento** para contextualizar decisões.
 
 ---
 
-## 📌 Recomendações acionáveis
-- **Vendas & Marketing**
-  - Campanhas para o **Top 5** (bundles, cross-sell com periféricos).
-  - **Segmentação por gênero** e **cidades** (quando houver o campo) com criativos distintos.
-  - Testar **cupom PIX** e **frete/instalação** como diferenciais.
-- **Operações & Financeiro**
-  - Revisar **contratos de RH/Infra** e metas de produtividade.
-  - Renegociar taxas de **cartão** e incentivar **PIX**.
-  - Acompanhar **despesas por departamento** com metas mensais.
-- **Produto & Estoque**
-  - Planejamento de **reabastecimento** puxado por curva A (Top 5).
-  - Monitorar **ruptura** e ajustar preços conforme elasticidade.
+## 📈 Principais achados — Julho (exemplos guiados pelo painel)
+- **Resultado**: cerca de **R$ 313 mil** de **Receita** e **R$ 261 mil** de **Lucro** → **margem saudável** e eficiência operacional.  
+- **Mix campeão**: **Top 5** produtos (ex.: *XPG Gammix*, *Cooler Master*, *Corsair RM650*, etc.) puxam boa parte do faturamento → priorizar **estoque**, **vitrines** e **bundles** com periféricos.  
+- **Despesas**: destaque para **RH** e **Infraestrutura** → revisar contratos, dimensionamento e SLAs.  
+- **Clientes**: distribuição equilibrada por **gênero** (~51% / 49%) → campanhas **segmentadas** têm potencial de elevar conversão.  
+- **Pagamentos**: **Cartão de Crédito** (~36%) lidera; **PIX** (~24%) em 2º e **Boleto** (~17%) → incentivo ao **PIX** reduz custo financeiro e acelera caixa.
+
+> Os valores são **aproximados** e **dependem do filtro** aplicado no painel (recorte padrão: **julho**).
 
 ---
 
-## 🧱 Dados
-- **Base utilizada:** `FluxoCaixa_DatasetUnico_ASCII.xlsx` (dataset único consolidado).  
-- **Campos-chave (exemplos):** período (ano/mês), produto, departamento, forma de pagamento, gênero do cliente, cidade, **receita**, **despesa**, **lucro**.
-
-> **Privacidade:** dado demonstrativo, sem informações sensíveis. O link Power BI foi publicado via **Publish to web** para acesso público.
-
----
-
-## 🗺️ Como navegar no painel
-1. Use o **slicer** para escolher **Ano → Mês → Forma de Pagamento**.  
-2. Leia primeiro os **KPIs** (Receita/Lucro), depois **Top 5** e **Despesas**.  
-3. Cruze **perfil de cliente** e **pagamento** para orientar campanhas e taxas.
+## 🧭 Implicações para decisão
+- **Vendas & Marketing**: reforçar **Top 5** em campanhas, fazer **cross-sell** e **bundles**; segmentar por **gênero/cidade** nos criativos.  
+- **Financeiro & Operações**: metas de **despesa por área**, renegociação de **taxas de cartão** e estímulo a **PIX**.  
+- **Estoque & Produto**: **planejamento por curva A**, monitoramento de **ruptura** e avaliação de **elasticidade de preço**.
 
 ---
 
-## 🚀 Próximos passos
-- Incluir **metas (target)** nos KPIs e **semaforização**.
-- Abrir um **dashboard de cohort** por **primeira compra** e **recência/frequência/valor (RFV)**.
-- Adicionar **sazonalidade** (comparar com meses anteriores e mesmo mês do ano anterior).
-- Criar **alertas** (ex.: queda de conversão no PIX, estouro de despesas em RH).
+## ⚖️ Considerações e limites
+- Projeto **demonstrativo** (não sensível). Publicado via **Publish to web** para portfólio.  
+- Leituras são **agregadas** e otimizadas para **decisão executiva**; análises granulares (p. ex., por cliente/cidade ou por coorte) podem ser adicionadas em versões futuras.
 
 ---
 
+## 📬 Contato
+Projeto acadêmico/demonstrativo — *New Generation* (varejo de eletrônicos).
 ## 📬 Contato
 Projeto acadêmico/demonstrativo – *New Generation* (varejo de eletrônicos).  
